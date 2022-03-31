@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Circle } from "react-google-maps/lib/components/Circle";
-import { Typography, Slider, Row, Col } from "antd";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { Typography, Slider } from "antd";
+import LeftRightNavigator from "../../components/LeftRightNavigator/LeftRightNavigator";
 export default function Radius({ lat, lng }) {
   const [value, setVal] = useState(0);
+  const [kmValue, setKmValue] = useState("");
+  const onChangeVal = (val) => {
+    setKmValue(`${String(val)} kms`);
+    setVal(val);
+  };
   return (
     <div>
       <Circle
@@ -38,26 +43,13 @@ export default function Radius({ lat, lng }) {
             defaultValue={0}
             max={30}
             value={value}
-            onChange={(val) => setVal(val)}
+            onChange={(val) => onChangeVal(val)}
           />
-          <Row justify="space-around">
-            <Col>
-              <ArrowLeftOutlined
-                style={{
-                  fontSize: 17,
-                  padding: 10,
-                }}
-              />
-            </Col>
-            <Col>
-              <ArrowRightOutlined
-                style={{
-                  fontSize: 17,
-                  padding: 10,
-                }}
-              />
-            </Col>
-          </Row>
+          <LeftRightNavigator
+            desc="radius"
+            sliderVal={{ Radius: kmValue }}
+            rightLink="/register"
+          />
         </div>
       </div>
     </div>

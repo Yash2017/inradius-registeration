@@ -1,17 +1,26 @@
 import React from "react";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
-import QualificationMainContent from "../../components/QualificationMainContent/QualificationMainContent";
 import { Layout } from "antd";
 import "./QualificationEntry.css";
+import DropdownMenu from "../../components/DropdownMenu/DropdownMenu";
 function QualificationEntry() {
-  const { Sider } = Layout;
+  const qualifications = [
+    "10th Passed",
+    "12th Passed",
+    "Bachelors",
+    "Masters",
+    "PhD",
+    "IIT",
+    "MBA",
+  ];
   return (
     <Layout style={{ overflow: "hidden" }}>
-      <Sider width={250} className="site-layout-background">
-        <LeftPanel />
-      </Sider>
       <Layout style={{ padding: "24px 24px 24px" }}>
-        <QualificationMainContent />
+        <DropdownMenu
+          number={1}
+          content={qualifications}
+          display="Qualifications"
+        />
       </Layout>
     </Layout>
   );
